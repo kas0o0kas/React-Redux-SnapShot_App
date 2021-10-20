@@ -1,56 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import NotFound from 'components/NotFound/NotFound';
+import CardPage from 'features/PhotoPage/PhotoCardPage/CardPage';
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
+
+const MainPage = React.lazy(() => import('features/PhotoPage/MainPage/MainPage'))
+
+// Schlüssel:
+// 9fcc51c4d5ea783d1f1392d16301549b
+
+// Geheimer Schlüssel:
+// 0ac1433c8db39024
+
+// url:
+// https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=9fcc51c4d5ea783d1f1392d16301549b&tags=cats&format=json&nojsoncallback=1&extras=url_o
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Router>
+        <Suspense fallback = {<div>Loading...</div>}>
+          <Switch>
+            <Redirect exact from='/' to='/main' />
+            <Route path="/main" component={MainPage} />
+            <Route path="/:photoId" component={CardPage} />
+            <Route component = {NotFound}/>
+          </Switch>
+        </Suspense>
+      </Router>
+
     </div>
   );
 }

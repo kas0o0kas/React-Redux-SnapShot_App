@@ -1,0 +1,50 @@
+.header {
+    background-color: rgb(238, 170, 44);
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    &__logo a {
+        text-decoration: none;
+        color: #111ba0;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 5px;
+        transition: all 200ms ease-in-out;
+
+        &:hover {
+            color: #ffff;
+        }
+    }
+
+    &__search {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        & input:focus, input, input::placeholder {
+            color: rgb(211, 18, 82);
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+        }
+    }
+
+    &__suggess {
+        & button{
+            transition: all 200ms ease-in-out;
+
+            &:hover {
+                transform: scale(1.15);
+            }
+
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            &.active {
+                color: #ffff;
+                background-color: rgb(211, 18, 82);
+                border-color: rgb(211, 18, 82);
+            }
+        }
+        
+    }
+}
