@@ -94,13 +94,11 @@ const PhotoList = () => {
     
     return (
         <div className="photolist">
-            
             <InfiniteScroll
                     dataLength={photolist.length} //This is important field to render the next data
                     next={() => dispatch(setPage(page + 1))}
                     hasMore={true}
                     // loader={<h4>Loading...</h4>}
-  
                 >
                     <Row >
                         {photolist.map((item, key) => 
